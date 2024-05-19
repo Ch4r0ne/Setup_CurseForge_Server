@@ -31,7 +31,8 @@ chmod +x startserver.sh
 EOF
 
 # Set up Minecraft service
-sudo bash -c 'cat << EOF > /etc/systemd/system/minecraft.service
+if [ ! -f "/etc/systemd/system/minecraft.service" ]; then
+    sudo bash -c 'cat << EOF > /etc/systemd/system/minecraft.service
 [Unit]
 Description=Minecraft Server
 After=network.target
@@ -46,6 +47,7 @@ ExecStop=/usr/bin/screen -S minecraft -X quit
 [Install]
 WantedBy=multi-user.target
 EOF'
+fi
 
 sudo systemctl enable minecraft
 sudo systemctl start minecraft
