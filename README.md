@@ -4,6 +4,12 @@ This is a skirpt to install and set up a Corsforge server on an Ubuntu distro wi
 
 ## Install
 
+Check the code and edit it if other parmeters are required.
+```sh
+nano Setup_CurseForge_Server/setup-curseforge-server.sh
+```
+
+Installation
 ```sh
 sudo apt install git -y
 git clone https://TOKEN@github.com/Ch4r0ne/Setup_CurseForge_Server.git
