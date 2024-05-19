@@ -18,18 +18,6 @@ sudo adduser --gecos "" --disabled-password minecraft
 sudo mkdir /minecraft
 sudo chown -R minecraft:minecraft /minecraft
 
-# Download and install Minecraft server
-sudo -i -u minecraft bash << EOF
-cd /minecraft
-wget https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip
-unzip Server-Files-0.1.13.zip
-rm Server-Files-0.1.13.zip
-cd Server-Files-0.1.13
-echo "eula=true" > eula.txt
-chmod +x startserver.sh
-./startserver.sh
-EOF
-
 # Set up Minecraft service
 if [ ! -f "/etc/systemd/system/minecraft.service" ]; then
     sudo bash -c 'cat << EOF > /etc/systemd/system/minecraft.service
@@ -50,7 +38,6 @@ EOF'
 fi
 
 sudo systemctl enable minecraft
-sudo systemctl start minecraft
 
 # Create backup script
 sudo -i -u minecraft bash << EOF
@@ -73,4 +60,17 @@ EOF
 # Set up cron job for backup
 (crontab -l 2>/dev/null; echo "0 2 * * * /minecraft/backup.sh") | crontab -
 
-echo "Minecraft server setup is complete and running."
+echo "The setup of the Minecraft server is complete, the server will now be installed as the next step."
+
+# Download and install Minecraft server
+sudo -i -u minecraft bash << EOF
+cd /minecraft
+wget https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip
+unzip Server-Files-0.1.13.zip
+rm Server-Files-0.1.13.zip
+cd Server-Files-0.1.13
+echo "eula=true" > eula.txt
+chmod +x startserver.sh
+sudo systemctl start minecraft
+sudo -u minecraft screen -r minecraft
+EOF
