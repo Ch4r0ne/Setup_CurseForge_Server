@@ -6,6 +6,23 @@ This is a skirpt to install and set up a Corsforge server on an Ubuntu distro wi
 
 To access the current screen session:
 
+
+```sh
+git clone https://TOKEN@github.com/Ch4r0ne/Setup_CurseForge_Server.git
+```
+
+```sh
+cd Setup_CurseForge_Server
+```
+
+```sh
+chmod +x Setup_CurseForge_Server.sh
+```
+
+```sh
+sh Setup_CurseForge_Server.sh
+```
+
 ```sh
 sudo -u minecraft screen -r minecraft
 ```
