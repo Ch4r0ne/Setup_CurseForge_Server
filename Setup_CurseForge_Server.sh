@@ -71,6 +71,6 @@ rm Server-Files-0.1.13.zip
 cd Server-Files-0.1.13
 echo "eula=true" > eula.txt
 chmod +x startserver.sh
-sudo systemctl start minecraft
-sudo -u minecraft screen -r minecraft
+systemctl start minecraft
+-u minecraft screen -r minecraft
 EOF
