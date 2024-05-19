@@ -26,3 +26,5 @@ sh Setup_CurseForge_Server.sh
 ```sh
 sudo -u minecraft screen -r minecraft
 ```
+
+Exit Screen Ctrl+a and d
