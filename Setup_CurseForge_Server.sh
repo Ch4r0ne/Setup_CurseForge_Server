@@ -3,11 +3,12 @@
 # Update and installation of the required packages
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install openjdk-17-jdk wget unzip screen -y
+sudo apt install openjdk-17-jdk wget unzip screen ufw -y
 
 # Firewall configuration
 sudo ufw allow 25565/tcp
 sudo ufw allow 25565/udp
+sudo ufw enable
 sudo ufw reload
 
 # Create users for Minecraft
