@@ -11,9 +11,13 @@ sudo ufw allow 25565/udp
 sudo ufw enable
 sudo ufw reload
 
+# Generate a random password for the minecraft user
+MC_PASSWORD=$(openssl rand -base64 12)
+echo "minecraft:$MC_PASSWORD" | sudo chpasswd
+echo "Minecraft user password: $MC_PASSWORD"
+
 # Create users for Minecraft
 sudo adduser --gecos "" --disabled-password minecraft
-echo "minecraft:password" | sudo chpasswd
 
 # Create Minecraft directory and set permissions
 sudo mkdir /minecraft
@@ -23,10 +27,10 @@ sudo chown -R minecraft:minecraft /minecraft
 sudo -i -u minecraft bash << EOF
 cd /minecraft
 wget https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip
-unzip BM_Exosphere_1.1.2_server_pack.zip
+unzip Server-Files-0.1.13.zip
 cd BM_Exosphere_1.1.2_server_pack
-chmod +x dateiname.sh
-./dateiname.sh
+chmod +x start.sh
+./start.sh
 EOF
 
 # Set up Minecraft service - Important Change Pfad here!
@@ -37,8 +41,8 @@ After=network.target
 
 [Service]
 User=minecraft
-WorkingDirectory=/minecraft/BM_Exosphere_1.1.13_server_pack
-ExecStart=/usr/bin/screen -DmS minecraft /minecraft/BM_Exosphere_1.1.13_server_pack/start.sh
+WorkingDirectory=/minecraft/BM_Exosphere_1.1.2_server_pack
+ExecStart=/usr/bin/screen -DmS minecraft /minecraft/BM_Exosphere_1.1.2_server_pack/startserver.sh
 Restart=on-failure
 
 [Install]
@@ -68,3 +72,8 @@ EOF
 
 # Set up cron job for backup
 (crontab -l 2>/dev/null; echo "0 2 * * * /minecraft/backup.sh") | crontab -
+
+# Output next steps to user
+echo "Minecraft server setup is complete. Use the following command to connect to the Minecraft server console:"
+echo "sudo -i -u minecraft screen -r minecraft"
+echo "Once connected, accept the EULA by editing eula.txt in the server directory."
