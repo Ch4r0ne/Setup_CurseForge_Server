@@ -15,8 +15,8 @@ sudo ufw reload
 sudo adduser --gecos "" --disabled-password minecraft
 
 # Create Minecraft directory and set permissions
-sudo mkdir /minecraft
-sudo chown -R minecraft:minecraft /minecraft
+sudo mkdir /home/minecraft
+sudo chown -R minecraft:minecraft /home/minecraft
 
 # Set up Minecraft service
 if [ ! -f "/etc/systemd/system/minecraft.service" ]; then
@@ -27,8 +27,8 @@ After=network.target
 
 [Service]
 User=minecraft
-WorkingDirectory=/minecraft/Server-Files-0.1.13
-ExecStart=/usr/bin/screen -DmS minecraft /minecraft/Server-Files-0.1.13/startserver.sh
+WorkingDirectory=/home/minecraft/Server-Files-0.1.13
+ExecStart=/usr/bin/screen -DmS minecraft /home/minecraft/Server-Files-0.1.13/startserver.sh
 Restart=on-failure
 ExecStop=/usr/bin/screen -S minecraft -X quit
 
@@ -41,11 +41,11 @@ sudo systemctl enable minecraft
 
 # Create backup script
 sudo -i -u minecraft bash << EOF
-cat << 'EOL' > /minecraft/backup.sh
+cat << 'EOL' > /home/minecraft/backup.sh
 #!/bin/bash
 
-BACKUP_DIR="/minecraft/backups"
-SOURCE_DIR="/minecraft/Server-Files-0.1.13"
+BACKUP_DIR="/home/minecraft/backups"
+SOURCE_DIR="/home/minecraft/Server-Files-0.1.13"
 TIMESTAMP=\$(date +"%F")
 BACKUP_FILE="\$BACKUP_DIR/minecraft_backup_\$TIMESTAMP.tar.gz"
 
@@ -54,17 +54,17 @@ tar -czvf \$BACKUP_FILE \$SOURCE_DIR
 find \$BACKUP_DIR -type f -mtime +10 -name "*.tar.gz" -exec rm {} \;
 EOL
 
-chmod +x /minecraft/backup.sh
+chmod +x /home/minecraft/backup.sh
 EOF
 
 # Set up cron job for backup
-(crontab -l 2>/dev/null; echo "0 2 * * * /minecraft/backup.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0 2 * * * /home/minecraft/backup.sh") | crontab -
 
 echo "The setup of the Minecraft server is complete, the server will now be installed as the next step."
 
 # Download and install Minecraft server
 sudo -i -u minecraft bash << EOF
-cd /minecraft
+cd /home/minecraft
 wget https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip
 unzip -o Server-Files-0.1.13.zip
 rm -f Server-Files-0.1.13.zip
