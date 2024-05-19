@@ -9,7 +9,7 @@ sudo apt install git -y
 git clone https://TOKEN@github.com/Ch4r0ne/Setup_CurseForge_Server.git
 cd Setup_CurseForge_Server
 chmod +x Setup_CurseForge_Server.sh
-sh setup-cursforge-server.sh
+sh Setup_CurseForge_Server.sh
 ```
 
 ## Accessing the screen session
