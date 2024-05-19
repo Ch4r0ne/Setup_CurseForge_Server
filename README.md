@@ -27,6 +27,19 @@ Exit Screen Ctrl+a and d
 sudo ufw allow ssh
 ```
 
+Quick SSH Root Access Activation/Deactivation
+
+To quickly enable SSH root access and deactivate it afterward, consider the following command:
+```sh
+# Enable SSH root access
+sudo sed -i 's/^#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+sudo systemctl restart sshd
+
+# Disable SSH root access
+sudo sed -i 's/^PermitRootLogin yes/#PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
+sudo systemctl restart sshd
+```
+
 ## Check Status
 
 1. Check the status of the Minecraft service:
@@ -43,3 +56,4 @@ sudo ufw allow ssh
     ```sh
     sudo systemctl start minecraft
     ```
+
