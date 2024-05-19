@@ -41,6 +41,7 @@ User=minecraft
 WorkingDirectory=/minecraft/Server-Files-0.1.13
 ExecStart=/usr/bin/screen -DmS minecraft /minecraft/Server-Files-0.1.13/startserver.sh
 Restart=on-failure
+ExecStop=/usr/bin/screen -S minecraft -X quit
 
 [Install]
 WantedBy=multi-user.target
