@@ -67,8 +67,8 @@ echo "The setup of the Minecraft server is complete, the server will now be inst
 sudo -i -u minecraft bash << EOF
 cd /minecraft
 wget https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip
-unzip Server-Files-0.1.13.zip
-rm Server-Files-0.1.13.zip
+unzip -o Server-Files-0.1.13.zip
+rm -f Server-Files-0.1.13.zip
 cd Server-Files-0.1.13
 echo "eula=true" > eula.txt
 chmod +x startserver.sh
