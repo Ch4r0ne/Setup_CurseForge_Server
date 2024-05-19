@@ -5,7 +5,7 @@ minecraft_home="/home/minecraft"
 server_files_dir="$minecraft_home/Server-Files"
 backup_dir="$minecraft_home/backups"
 minecraft_service_file="/etc/systemd/system/minecraft.service"
-minecraft_download_url="https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip"
+default_minecraft_download_url="https://edge.forgecdn.net/files/5225/986/Server-Files-0.1.13.zip"
 
 # Read user input for Minecraft server download URL
 read -p "Enter the Minecraft server download URL (default: $default_minecraft_download_url): " minecraft_download_url
