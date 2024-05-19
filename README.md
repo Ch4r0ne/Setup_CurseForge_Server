@@ -27,7 +27,8 @@ Exit Screen Ctrl+a and d
 ```sh
 sudo ufw allow ssh
 sudo adduser --gecos "" winscp
-sudo chown -R winscp:winscp /home/minecraft
+sudo chgrp -R winscp /home/minecraft
+sudo chmod 775 /home/minecraft
 ```
 
 # Update Process
