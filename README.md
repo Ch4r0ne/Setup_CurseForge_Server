@@ -22,6 +22,10 @@ sudo -u minecraft screen -r minecraft
 
 Exit Screen Ctrl+a and d
 
+## Remote Permission
+```sh
+sudo ufw allow ssh
+```
 
 ## Check Status
 
