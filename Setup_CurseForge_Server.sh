@@ -28,7 +28,7 @@ chmod +x dateiname.sh
 ./dateiname.sh
 EOF
 
-# Set up Minecraft service
+# Set up Minecraft service - Important Change Pfad here!
 sudo bash -c 'cat << EOF > /etc/systemd/system/minecraft.service
 [Unit]
 Description=Minecraft Server
