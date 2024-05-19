@@ -1,5 +1,7 @@
 # Setup CurseForge Server
 
+This is a skirpt to install and set up a Corsforge server on an Ubuntu distro with the desired downlaode URL of the respective modpacks
+
 ## Install
 
 ```sh
