@@ -73,7 +73,7 @@ echo "The setup of the Minecraft server is complete, the server will now be inst
 sudo -i -u minecraft bash << EOF
 cd $minecraft_home
 wget "$minecraft_download_url" -O server_files.zip
-unzip -o server_files.zip -d "$server_files_dir"
+unzip -o server_files.zip -d "$minecraft_home"
 rm -f server_files.zip
 cd "$server_files_dir"
 echo "eula=true" > eula.txt
