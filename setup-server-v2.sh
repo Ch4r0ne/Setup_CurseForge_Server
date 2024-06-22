@@ -1,14 +1,5 @@
 #!/bin/bash
 
-# Funktion zur Fehlerbehandlung
-function handle_error {
-    echo "Fehler in Zeile $1"
-    exit 1
-}
-
-# Fehlerbehandlung aktivieren
-trap 'handle_error $LINENO' ERR
-
 # Parameter für die Download-URL und Server-Dateinamen
 DOWNLOAD_URL="https://edge.forgecdn.net/files/5405/545/IV-1.20.1-Serverpack-1.5.zip"
 SERVER_DIR_NAME="IV-1.20.1-Serverpack-1.5"
